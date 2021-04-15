@@ -1,0 +1,39 @@
+@model IEnumerable<Models.Movimentacao>
+
+<ul class="list-group">
+    @foreach (var item in Model)
+    {
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-4">
+                    @item.DataMovimentacao
+                </div>
+                <div class="col-5">
+                    @item.Descricao
+                </div>
+                <div class="col-3">
+                    <td>
+                            <div class="row">
+                                <a asp-controller="Movimentacoes" asp-action="AtualizarMovimentacao"
+                                    asp-route-movimentacaoId="@item.MovimentacaoId"
+                                    class="btn btn-sm btn-outline-primary rounded-circle">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </a>
+
+                                <form asp-controller="Movimentacoes" asp-action="ExcluirMovimentacao"
+                                    asp-route-movimentacaoId="@item.MovimentacaoId">
+
+                                    <button type="submit" class="btn btn-sm btn-outline-danger rounded-circle">
+                                        <i class="fa fa-times-circle"></i>
+                                    </button>
+
+                                </form>
+
+                            </div>
+                        </td>
+                </div>
+            </div>
+
+        </li>
+    }
+</ul>

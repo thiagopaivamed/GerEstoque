@@ -1,0 +1,41 @@
+@model Models.Movimentacao
+
+@{
+    ViewData["Title"] = "Atualizar movimentação " + Model.Descricao;
+}
+
+<div class="container p-5">
+    <div class="row">
+        <div class="col-6 border border-light rounded p-5 shadow">
+            <h6>Atualizar movimentação @Model.Descricao</h6>
+            <hr />
+
+            <form asp-action="AtualizarMovimentacao">
+                <div class="form-group">
+                    <label>Descrição</label>
+                    <input asp-for="Descricao" type="text" class="form-control form-control-sm" />
+                </div>
+
+                <input hidden asp-for="MovimentacaoId" />
+                <input hidden asp-for="ProdutoId"/>
+                <input hidden asp-for="DataMovimentacao"/>
+
+                <div class="container">
+                    <div class="row">
+                        <div>
+                            <button type="submit" class="btn btn-sm btn-outline-primary">
+                                Salvar
+                            </button>
+                        </div>
+
+                        <div class="pl-1">
+                            <a class="btn btn-sm btn-light" asp-action="DetalhesProduto" asp-controller="Produtos" asp-route-produtoId="@Model.ProdutoId">Voltar</a>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

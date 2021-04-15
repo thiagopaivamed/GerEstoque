@@ -1,0 +1,91 @@
+@model IEnumerable<Models.Produto>
+
+@{
+    ViewData["Title"] = "Produtos registrados";
+}
+
+<div class="container p-5">
+    <div class="border border-light rounded p-5">
+        <a asp-controller="Produtos" asp-action="NovoProduto" class="btn btn-sm btn-outline-info">
+            Novo produto
+        </a>
+
+        <hr />
+
+        <table class="table table-striped table-hover table-sm">
+            <thead>
+                <tr class="thead-light">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+
+                     <th>
+                        @Html.DisplayNameFor(model => model.Quantidade)
+                    </th>
+
+                     <th>
+                        @Html.DisplayNameFor(model => model.Preco)
+                    </th>
+
+                     <th>
+                        @Html.DisplayNameFor(model => model.Categoria.Nome)
+                    </th>
+
+                    <th>
+                        Ações
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantidade)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Preco)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Categoria.Nome)
+                        </td>
+
+                        <td>
+                            <div class="row">
+                                <a asp-controller="Produtos" asp-action="AtualizarProduto"
+                                    asp-route-produtoId="@item.ProdutoId"
+                                    class="btn btn-sm btn-outline-primary rounded-circle">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </a>
+
+                                <a asp-controller="Produtos" asp-action="DetalhesProduto"
+                                    asp-route-produtoId="@item.ProdutoId"
+                                    class="btn btn-sm btn-outline-warning rounded-circle">
+                                    <i class="fa fa-tasks"></i>
+                                </a>
+
+                                <form asp-controller="Produtos" asp-action="ExcluirProduto"
+                                    asp-route-produtoId="@item.ProdutoId">
+
+                                    <button type="submit" class="btn btn-sm btn-outline-danger rounded-circle">
+                                        <i class="fa fa-times-circle"></i>
+                                    </button>
+
+                                </form>
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>

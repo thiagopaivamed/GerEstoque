@@ -15,7 +15,7 @@ namespace GerEstoque.Controllers
         }
 
         [HttpGet]
-        public IActionResult NovaMovimentacao(int produtoId)
+        public async Task<IActionResult> NovaMovimentacao(int produtoId)
         {
             Movimentacao movimentacao = new Movimentacao 
             { ProdutoId = produtoId };
